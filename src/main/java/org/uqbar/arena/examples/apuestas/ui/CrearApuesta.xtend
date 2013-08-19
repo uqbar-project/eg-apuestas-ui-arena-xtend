@@ -12,7 +12,9 @@ import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.ErrorsPanel
 import org.uqbar.arena.windows.MainWindow
+import org.uqbar.commons.utils.Observable
 
+@Observable
 class CrearApuesta extends MainWindow<Apuesta> {
 	new(Apuesta apuesta) {
 		super(apuesta)
@@ -35,7 +37,7 @@ class CrearApuesta extends MainWindow<Apuesta> {
 		new TextBox(editorPanel).bindValueToProperty("fecha")
 
 		new Label(editorPanel).setText("Monto")
-		new TextBox(editorPanel).bindValueToProperty("monto")
+		new TextBox(editorPanel).bindValueToProperty("monto").setTransformer(new BigDecimalTransformer)
 
 		new Label(editorPanel).setText("Tipo de Apuesta")
 		val tipoSelector = new Selector(editorPanel)
