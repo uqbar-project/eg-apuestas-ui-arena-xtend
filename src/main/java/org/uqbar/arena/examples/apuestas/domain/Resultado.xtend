@@ -20,7 +20,7 @@ class Ganador extends Resultado {
 	}
 
 	override toString() {
-		'''Gana «montoGanado»'''
+		'''Ganaste $«montoGanado»'''
 	}
 }
 

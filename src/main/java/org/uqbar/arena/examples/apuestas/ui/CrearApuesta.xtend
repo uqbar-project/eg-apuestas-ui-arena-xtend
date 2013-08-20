@@ -29,7 +29,9 @@ class CrearApuesta extends SimpleWindow<Apuesta> {
 		editorPanel.setLayout(new ColumnLayout(2))
 
 		new Label(editorPanel).setText("Fecha")
-		new TextBox(editorPanel).bindValueToProperty("fecha")
+		val textBoxFecha = new TextBox(editorPanel)
+		textBoxFecha.bindValueToProperty("fecha")
+		textBoxFecha.withFilter(new DateTextFilter)
 
 		new Label(editorPanel).setText("Monto")
 		new TextBox(editorPanel).bindValueToProperty("monto").setTransformer(new BigDecimalTransformer)
@@ -48,12 +50,17 @@ class CrearApuesta extends SimpleWindow<Apuesta> {
 
 	override addActions(Panel actionsPanel) {
 		val botonJugar = new Button(actionsPanel).setAsDefault.setCaption("Jugar")
-		botonJugar.onClick[|modelObject.jugar]
+		botonJugar.onClick[|jugar]
 		botonJugar.bindEnabled(new NotNullObservable("valorApostado"))
-		
+
 		val labelResultado = new Label(actionsPanel)
 		labelResultado.setWidth(150)
 		labelResultado.bindValueToProperty("resultado")
+	}
+
+	def jugar() {
+		modelObject.jugar
+		showInfo(modelObject.resultado.toString)
 	}
 
 	def getTiposPosibles() {
