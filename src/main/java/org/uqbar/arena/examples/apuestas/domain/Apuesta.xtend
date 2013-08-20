@@ -2,8 +2,9 @@ package org.uqbar.arena.examples.apuestas.domain
 
 import java.math.BigDecimal
 import java.util.Date
-import org.uqbar.commons.utils.Observable
 import java.util.Random
+import org.uqbar.commons.model.UserException
+import org.uqbar.commons.utils.Observable
 
 @Observable
 class Apuesta {
@@ -17,6 +18,11 @@ class Apuesta {
 
 	def isPuedeJugar() {
 		fecha != null && fecha.after(hoy) && monto != null && monto > new BigDecimal(0)
+	}
+
+	def void setMonto(BigDecimal monto) {
+		if (monto <= new BigDecimal(0)) throw new UserException("El monto debe ser positivo.")
+		this._monto = monto
 	}
 
 	def jugar() {

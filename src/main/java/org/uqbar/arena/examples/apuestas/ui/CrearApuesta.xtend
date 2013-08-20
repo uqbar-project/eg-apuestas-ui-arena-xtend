@@ -52,6 +52,7 @@ class CrearApuesta extends SimpleWindow<Apuesta> {
 		val botonJugar = new Button(actionsPanel).setAsDefault.setCaption("Jugar")
 		botonJugar.onClick[|jugar]
 		botonJugar.bindEnabled(new NotNullObservable("valorApostado"))
+		botonJugar.disableOnError
 
 		val labelResultado = new Label(actionsPanel)
 		labelResultado.setWidth(150)
