@@ -9,5 +9,15 @@ class Apuesta {
 	@Property Date fecha
 	@Property BigDecimal monto
 	@Property TipoApuesta tipo
-}
+	@Property Object valorApostado
 
+	val hoy = new Date()
+
+	def sePuedeJugar() {
+		fecha.after(hoy) && monto > new BigDecimal(0)
+	}
+
+	def jugar() {
+		tipo.validarMontoMinimo(monto)
+	}
+}

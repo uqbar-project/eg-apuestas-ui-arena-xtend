@@ -6,6 +6,7 @@ import org.uqbar.arena.examples.apuestas.domain.ApuestaDocena
 import org.uqbar.arena.examples.apuestas.domain.ApuestaPleno
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.VerticalLayout
+import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Selector
@@ -28,6 +29,8 @@ class CrearApuesta extends MainWindow<Apuesta> {
 
 		val editorPanel = new Panel(mainPanel)
 		createEditorPanel(editorPanel)
+
+		new Button(mainPanel).setAsDefault.setCaption("Jugar").bindEnabledToProperty("sePuedeJugar")
 	}
 
 	def createEditorPanel(Panel editorPanel) {
@@ -40,9 +43,13 @@ class CrearApuesta extends MainWindow<Apuesta> {
 		new TextBox(editorPanel).bindValueToProperty("monto").setTransformer(new BigDecimalTransformer)
 
 		new Label(editorPanel).setText("Tipo de Apuesta")
-		val tipoSelector = new Selector(editorPanel)
-		tipoSelector.bindValueToProperty("tipo")
-		tipoSelector.bindItems(new ObservableProperty(this, "tiposPosibles"))
+		val selectorTipo = new Selector(editorPanel).allowNull(false)
+		selectorTipo.bindItems(new ObservableProperty(this, "tiposPosibles"))
+		selectorTipo.bindValueToProperty("tipo")
+
+		new Label(editorPanel).setText("¿Qué querés apostar?")
+		selectorTipo.bindItemsToProperty("tipo.valoresPosibles")
+		selectorTipo.bindValueToProperty("valorApostado")
 	}
 
 	def getTiposPosibles() {
