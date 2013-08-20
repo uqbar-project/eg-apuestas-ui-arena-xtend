@@ -13,8 +13,8 @@ class Apuesta {
 
 	val hoy = new Date()
 
-	def sePuedeJugar() {
-		fecha.after(hoy) && monto > new BigDecimal(0)
+	def isPuedeJugar() {
+		fecha != null && fecha.after(hoy) && monto != null && monto > new BigDecimal(0)
 	}
 
 	def jugar() {

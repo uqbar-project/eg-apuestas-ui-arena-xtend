@@ -3,7 +3,9 @@ package org.uqbar.arena.examples.apuestas.domain
 import java.math.BigDecimal
 import java.util.List
 import org.uqbar.commons.model.UserException
+import org.uqbar.commons.utils.Observable
 
+@Observable
 abstract class TipoApuesta {
 	override toString() {
 		this.class.simpleName.substring(7)
