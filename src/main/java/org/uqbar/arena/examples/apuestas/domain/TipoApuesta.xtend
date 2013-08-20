@@ -21,6 +21,17 @@ abstract class TipoApuesta {
 
 	def int montoMinimo()
 
+	def boolean esGanador(int ganador, Object valorApostado)
+
+	def int ganancia()
+
+	def Resultado chequearApuesta(int ganador, Apuesta apuesta) {
+		if (esGanador(ganador, apuesta.valorApostado))
+			new Ganador(ganador, apuesta.monto * new BigDecimal(ganancia))
+		else
+			new Perdedor(ganador)
+	}
+
 	def asObjects(List<?> list) {
 		list.map[it as Object]
 	}
@@ -34,6 +45,14 @@ class ApuestaPleno extends TipoApuesta {
 	override montoMinimo() {
 		10
 	}
+
+	override ganancia() {
+		35
+	}
+
+	override esGanador(int ganador, Object valorApostado) {
+		ganador == valorApostado
+	}
 }
 
 class ApuestaDocena extends TipoApuesta {
@@ -45,5 +64,16 @@ class ApuestaDocena extends TipoApuesta {
 
 	override montoMinimo() {
 		50
+	}
+
+	override ganancia() {
+		11
+	}
+
+	override esGanador(int ganador, Object valorApostado) {
+		val docena = docenas.indexOf(valorApostado)
+		val min = docena * 12 + 1
+		val max = (docena + 1) * 12
+		(min .. max).contains(ganador)
 	}
 }

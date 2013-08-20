@@ -20,6 +20,7 @@ import org.uqbar.commons.utils.Observable
 class CrearApuesta extends SimpleWindow<Apuesta> {
 	new(WindowOwner owner, Apuesta apuesta) {
 		super(owner, apuesta)
+		title = "Ruleta"
 		taskDescription = "Hagan sus apuestas!!!"
 	}
 
@@ -49,6 +50,10 @@ class CrearApuesta extends SimpleWindow<Apuesta> {
 		val botonJugar = new Button(actionsPanel).setAsDefault.setCaption("Jugar")
 		botonJugar.onClick[|modelObject.jugar]
 		botonJugar.bindEnabled(new NotNullObservable("valorApostado"))
+		
+		val labelResultado = new Label(actionsPanel)
+		labelResultado.setWidth(150)
+		labelResultado.bindValueToProperty("resultado")
 	}
 
 	def getTiposPosibles() {
@@ -58,7 +63,6 @@ class CrearApuesta extends SimpleWindow<Apuesta> {
 	// ************************************************************************
 	// ** Hacks
 	// ************************************************************************
-	
 	override showInfo(String message) {
 		this.showMessageBox(message, SWT.OK.bitwiseOr(SWT.ICON_INFORMATION))
 	}

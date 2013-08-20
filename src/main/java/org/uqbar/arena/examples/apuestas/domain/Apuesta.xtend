@@ -3,6 +3,7 @@ package org.uqbar.arena.examples.apuestas.domain
 import java.math.BigDecimal
 import java.util.Date
 import org.uqbar.commons.utils.Observable
+import java.util.Random
 
 @Observable
 class Apuesta {
@@ -10,6 +11,7 @@ class Apuesta {
 	@Property BigDecimal monto
 	@Property TipoApuesta tipo
 	@Property Object valorApostado
+	@Property Resultado resultado
 
 	val hoy = new Date()
 
@@ -19,5 +21,9 @@ class Apuesta {
 
 	def jugar() {
 		tipo.validarMontoMinimo(monto)
+		
+		val ganador = new Random().nextInt(37)
+		resultado = tipo.chequearApuesta(ganador, this)
 	}
 }
+
