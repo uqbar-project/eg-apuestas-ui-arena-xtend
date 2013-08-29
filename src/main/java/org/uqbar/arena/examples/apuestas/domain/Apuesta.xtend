@@ -17,11 +17,11 @@ class Apuesta {
 	val hoy = new Date()
 
 	def isPuedeJugar() {
-		fecha != null && fecha.after(hoy) && monto != null && monto > new BigDecimal(0)
+		fecha != null && fecha.after(hoy) && monto != null && monto > BigDecimal::ZERO
 	}
 
 	def void setMonto(BigDecimal monto) {
-		if (monto <= new BigDecimal(0)) throw new UserException("El monto debe ser positivo.")
+		if (monto <= BigDecimal::ZERO) throw new UserException("El monto debe ser positivo.")
 		this._monto = monto
 	}
 
@@ -31,5 +31,5 @@ class Apuesta {
 		val ganador = new Random().nextInt(37)
 		resultado = tipo.chequearApuesta(ganador, this)
 	}
+	
 }
-
