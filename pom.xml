@@ -7,7 +7,7 @@
 	<description>Aplicación sencilla paramostrar validaciones.</description>
 
 	<parent>
-		<groupId>org..uqbar-project</groupId>
+		<groupId>org.uqbar-project</groupId>
 		<artifactId>uqbar-xtend-parent</artifactId>
 		<version>1.0</version>
 	</parent>
