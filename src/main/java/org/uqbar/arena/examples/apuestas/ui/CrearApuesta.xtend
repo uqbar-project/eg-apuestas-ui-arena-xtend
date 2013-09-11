@@ -1,7 +1,6 @@
 package org.uqbar.arena.examples.apuestas.ui
 
 import org.eclipse.swt.SWT
-import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.bindings.ObservableProperty
 import org.uqbar.arena.examples.apuestas.domain.Apuesta
 import org.uqbar.arena.examples.apuestas.domain.ApuestaDocena
@@ -29,19 +28,22 @@ class CrearApuesta extends SimpleWindow<Apuesta> {
 		editorPanel.setLayout(new ColumnLayout(2))
 
 		new Label(editorPanel).setText("Fecha")
-		val textBoxFecha = new TextBox(editorPanel)
+		val textBoxFecha = new DateBox(editorPanel)
 		textBoxFecha.bindValueToProperty("fecha")
-		textBoxFecha.withFilter(new DateTextFilter)
 
 		new Label(editorPanel).setText("Monto")
-		new TextBox(editorPanel).bindValueToProperty("monto").setTransformer(new BigDecimalTransformer)
+		val textBoxMonto = new TextBox(editorPanel)
+		val bindingMonto = textBoxMonto.bindValueToProperty("monto")
+		bindingMonto.transformer = new BigDecimalTransformer
 
 		new Label(editorPanel).setText("Tipo de Apuesta")
 		val selectorTipo = new Selector(editorPanel).allowNull(false)
 		selectorTipo.bindItems(new ObservableProperty(this, "tiposPosibles"))
-		selectorTipo.bindValueToProperty("tipo")
 
-		new Label(editorPanel).setText("¿Qué querés apostar?")
+		selectorTipo.bindValueToProperty("tipo")
+		// selectorTipo.bindValue(new ObservableProperty(this.modelObject, "tipo"))
+
+		new Label(editorPanel).setText("¿A qué querés apostar?")
 		val selectorApuesta = new Selector(editorPanel).allowNull(false)
 		selectorApuesta.setWidth(100)
 		selectorApuesta.bindItemsToProperty("tipo.valoresPosibles")
@@ -49,9 +51,13 @@ class CrearApuesta extends SimpleWindow<Apuesta> {
 	}
 
 	override addActions(Panel actionsPanel) {
-		val botonJugar = new Button(actionsPanel).setAsDefault.setCaption("Jugar")
+		val botonJugar = new Button(actionsPanel)
+		botonJugar.setCaption("Jugar")
+		botonJugar.setAsDefault
 		botonJugar.onClick[|jugar]
-		botonJugar.bindEnabled(new NotNullObservable("valorApostado"))
+
+		// botonJugar.bindEnabled(new NotNullObservable("valorApostado"))
+		botonJugar.bindEnabledToProperty("puedeJugar")
 		botonJugar.disableOnError
 
 		val labelResultado = new Label(actionsPanel)
@@ -67,20 +73,17 @@ class CrearApuesta extends SimpleWindow<Apuesta> {
 	def getTiposPosibles() {
 		#[new ApuestaPleno, new ApuestaDocena]
 	}
-
-	// ************************************************************************
-	// ** Hacks
-	// ************************************************************************
-	override showInfo(String message) {
-		this.showMessageBox(message, SWT.OK.bitwiseOr(SWT.ICON_INFORMATION))
-	}
-
-	override showWarning(String message) {
-		this.showMessageBox(message, SWT.OK.bitwiseOr(SWT.ICON_WARNING))
-	}
-
-	override showError(String message) {
-		this.showMessageBox(message, SWT.OK.bitwiseOr(SWT.ICON_ERROR))
-	}
-
 }
+
+class DateBox extends TextBox {
+	new(Panel container) {
+		super(container)
+	}
+
+	override bindValueToProperty(String propertyName) {
+		val binding = super.bindValueToProperty(propertyName)
+		this.withFilter(new DateTextFilter)
+		binding
+	}
+}
+
