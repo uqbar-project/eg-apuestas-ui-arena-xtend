@@ -1,6 +1,5 @@
 package org.uqbar.arena.examples.apuestas.ui
 
-import org.eclipse.swt.SWT
 import org.uqbar.arena.bindings.ObservableProperty
 import org.uqbar.arena.examples.apuestas.domain.Apuesta
 import org.uqbar.arena.examples.apuestas.domain.ApuestaDocena
