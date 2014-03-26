@@ -40,7 +40,6 @@ class CrearApuesta extends SimpleWindow<Apuesta> {
 		selectorTipo.bindItems(new ObservableProperty(this, "tiposPosibles"))
 
 		selectorTipo.bindValueToProperty("tipo")
-		// selectorTipo.bindValue(new ObservableProperty(this.modelObject, "tipo"))
 
 		new Label(editorPanel).setText("¿A qué querés apostar?")
 		val selectorApuesta = new Selector(editorPanel).allowNull(false)
@@ -50,23 +49,29 @@ class CrearApuesta extends SimpleWindow<Apuesta> {
 	}
 
 	override addActions(Panel actionsPanel) {
-		val botonJugar = new Button(actionsPanel)
-		botonJugar.setCaption("Jugar")
-		botonJugar.setAsDefault
-		botonJugar.onClick[|jugar]
+		new Button(actionsPanel)
+			.setCaption("Jugar")
+			.setAsDefault
+			.onClick[ |jugar]
+			.disableOnError
+			.bindEnabledToProperty("puedeJugar")
 
-		// botonJugar.bindEnabled(new NotNullObservable("valorApostado"))
-		botonJugar.bindEnabledToProperty("puedeJugar")
-		botonJugar.disableOnError
-
-		val labelResultado = new Label(actionsPanel)
-		labelResultado.setWidth(150)
-		labelResultado.bindValueToProperty("resultado")
+		new Label(actionsPanel)
+			.setWidth(150)
+			.bindValueToProperty("resultado")
+		
+		new Button(actionsPanel)
+			.setCaption("Numeros Ganadores")
+			.onClick[ |verNumerosGanadores]
 	}
 
 	def jugar() {
 		modelObject.jugar
 		showInfo(modelObject.resultado.toString)
+	}
+
+	def verNumerosGanadores(){
+		
 	}
 
 	def getTiposPosibles() {

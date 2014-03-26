@@ -3,9 +3,9 @@ package org.uqbar.arena.examples.apuestas.domain
 import java.math.BigDecimal
 import java.util.Date
 import java.util.Random
+import org.uqbar.commons.model.ObservableUtils
 import org.uqbar.commons.model.UserException
 import org.uqbar.commons.utils.Observable
-import org.uqbar.commons.model.ObservableUtils
 
 @Observable
 class Apuesta {
