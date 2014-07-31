@@ -4,7 +4,7 @@
 	<artifactId>apuestas-ui-arena-xtend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>apuestas-ui-arena-xtend</name>
-	<description>Aplicación sencilla paramostrar validaciones.</description>
+	<description>Aplicación sencilla para mostrar validaciones.</description>
 
 	<parent>
 		<groupId>org.uqbar-project</groupId>
