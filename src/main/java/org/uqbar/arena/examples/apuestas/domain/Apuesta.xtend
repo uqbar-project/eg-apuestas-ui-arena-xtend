@@ -16,13 +16,30 @@ class Apuesta {
 	@Property Resultado resultado
 
 	val hoy = new Date()
-
+	
 	def isPuedeJugar() {
-		fecha != null && fecha.after(hoy) && monto != null && monto > BigDecimal.ZERO
+		fecha != null && fecha.after(hoy) 
+		&& monto != null && monto > BigDecimal.ZERO
+		&& tipo != null
+		&& valorApostado != null
 	}
 
 	def void setFecha(Date fecha) {
 		this._fecha = fecha
+		cambioPuedeApostar
+	}
+	
+	def void setTipo(TipoApuesta tipo) {
+		this._tipo = tipo
+		cambioPuedeApostar
+	}
+	
+	def void setValorApostado(Object valor) {
+		this._valorApostado = valor
+		cambioPuedeApostar
+	}
+	
+	def cambioPuedeApostar() {
 		ObservableUtils.firePropertyChanged(this, "puedeJugar", puedeJugar)
 	}
 
@@ -31,7 +48,7 @@ class Apuesta {
 			throw new UserException("El monto debe ser positivo.")
 
 		this._monto = monto
-		ObservableUtils.firePropertyChanged(this, "puedeJugar", puedeJugar)
+		cambioPuedeApostar
 	}
 
 	def jugar() {

@@ -1,5 +1,6 @@
 package org.uqbar.arena.examples.apuestas.ui
 
+import org.uqbar.arena.bindings.DateAdapter
 import org.uqbar.arena.bindings.ObservableProperty
 import org.uqbar.arena.examples.apuestas.domain.Apuesta
 import org.uqbar.arena.examples.apuestas.domain.ApuestaDocena
@@ -14,8 +15,12 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.commons.utils.Observable
 
+/**
+ * 
+ */
 @Observable
-class CrearApuesta extends SimpleWindow<Apuesta> {
+class CrearApuestaWindow extends SimpleWindow<Apuesta> {
+	
 	new(WindowOwner owner, Apuesta apuesta) {
 		super(owner, apuesta)
 		title = "Ruleta"
@@ -25,53 +30,62 @@ class CrearApuesta extends SimpleWindow<Apuesta> {
 	override createFormPanel(Panel mainPanel) {
 		val editorPanel = new Panel(mainPanel)
 		editorPanel.setLayout(new ColumnLayout(2))
-
+		
 		new Label(editorPanel).setText("Fecha")
-		val textBoxFecha = new DateBox(editorPanel)
-		textBoxFecha.bindValueToProperty("fecha")
-
+		
+		val textBoxFecha = new TextBox(editorPanel)
+		textBoxFecha.withFilter(new DateTextFilter)
+		
+		val binding = textBoxFecha.bindValueToProperty("fecha")
+		binding.setTransformer(new DateAdapter)
+		
+		
 		new Label(editorPanel).setText("Monto")
-		val textBoxMonto = new TextBox(editorPanel)
-		val bindingMonto = textBoxMonto.bindValueToProperty("monto")
-		bindingMonto.transformer = new BigDecimalTransformer
+		
+		new TextBox(editorPanel) => [
+			val bindingMonto = bindValueToProperty("monto")
+			bindingMonto.transformer = new BigDecimalTransformer			
+		]
 
 		new Label(editorPanel).setText("Tipo de Apuesta")
-		val selectorTipo = new Selector(editorPanel).allowNull(false)
-		selectorTipo.bindItems(new ObservableProperty(this, "tiposPosibles"))
-
-		selectorTipo.bindValueToProperty("tipo")
+		new Selector(editorPanel) => [
+			allowNull = false
+			bindItemsToProperty("tiposPosibles")
+			bindValueToProperty("tipo")
+//			bindValue(new ObservableProperty(this.modelObject, "tipo"))
+		]
 
 		new Label(editorPanel).setText("¿A qué querés apostar?")
-		val selectorApuesta = new Selector(editorPanel).allowNull(false)
-		selectorApuesta.setWidth(100)
-		selectorApuesta.bindItemsToProperty("tipo.valoresPosibles")
-		selectorApuesta.bindValueToProperty("valorApostado")
+		new Selector(editorPanel) => [
+			allowNull = false
+			width = 100
+			bindItemsToProperty("tipo.valoresPosibles")
+			bindValueToProperty("valorApostado")			
+		]
 	}
 
 	override addActions(Panel actionsPanel) {
-		new Button(actionsPanel)
-			.setCaption("Jugar")
-			.setAsDefault
-			.onClick[ |jugar]
-			.disableOnError
-			.bindEnabledToProperty("puedeJugar")
+		new Button(actionsPanel) => [
+			caption = "Jugar"
+			setAsDefault
+			onClick[|
+				jugar
+			]
+	
+			// bindEnabled(new NotNullObservable("valorApostado"))
+			bindEnabledToProperty("puedeJugar")
+			disableOnError
+		]
 
-		new Label(actionsPanel)
-			.setWidth(150)
-			.bindValueToProperty("resultado")
-		
-		new Button(actionsPanel)
-			.setCaption("Numeros Ganadores")
-			.onClick[ |verNumerosGanadores]
+		new Label(actionsPanel) => [
+			width = 150
+			bindValueToProperty("resultado")
+		]
 	}
 
 	def jugar() {
 		modelObject.jugar
 		showInfo(modelObject.resultado.toString)
-	}
-
-	def verNumerosGanadores(){
-		
 	}
 
 	def getTiposPosibles() {
