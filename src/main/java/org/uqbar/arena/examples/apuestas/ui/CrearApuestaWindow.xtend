@@ -50,7 +50,7 @@ class CrearApuestaWindow extends SimpleWindow<Apuesta> {
 		new Label(editorPanel).setText("Tipo de Apuesta")
 		new Selector(editorPanel) => [
 			allowNull = false
-			bindItemsToProperty("tiposPosibles")
+			bindItems(new ObservableProperty(this, "tiposPosibles"))
 			bindValueToProperty("tipo")
 //			bindValue(new ObservableProperty(this.modelObject, "tipo"))
 		]
