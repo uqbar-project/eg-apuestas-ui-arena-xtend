@@ -1,22 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<artifactId>apuestas-ui-arena-xtend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>apuestas-ui-arena-xtend</name>
 	<description>Aplicación sencilla para mostrar validaciones.</description>
 
 	<parent>
 		<groupId>org.uqbar-project</groupId>
-		<artifactId>uqbar-xtend-parent</artifactId>
-		<version>2.6.2</version>
+		<artifactId>arena-xtend-parent</artifactId>
+		<version>3.5.1</version>
 	</parent>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.uqbar-project</groupId>
-			<artifactId>arena-jface</artifactId>
-			<version>3.3-SNAPSHOT</version>
+			<artifactId>apuestas-domain-xtend</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
 

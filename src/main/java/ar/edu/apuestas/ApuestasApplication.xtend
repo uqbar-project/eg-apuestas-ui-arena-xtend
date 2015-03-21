@@ -1,7 +1,6 @@
-package org.uqbar.arena.examples.apuestas.ui
+package ar.edu.apuestas
 
 import org.uqbar.arena.Application
-import org.uqbar.arena.examples.apuestas.domain.Apuesta
 
 class ApuestasApplication extends Application {
 	

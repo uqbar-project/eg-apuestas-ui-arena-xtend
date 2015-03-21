@@ -1,4 +1,4 @@
-package org.uqbar.arena.examples.apuestas.ui
+package ar.edu.apuestas
 
 import java.math.BigDecimal
 import org.uqbar.arena.bindings.Transformer

@@ -1,4 +1,4 @@
-package org.uqbar.arena.examples.apuestas.ui
+package ar.edu.apuestas
 
 import java.util.ArrayList
 import org.uqbar.arena.widgets.TextFilter
