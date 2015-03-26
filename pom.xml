@@ -17,7 +17,7 @@
 		<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>apuestas-domain-xtend</artifactId>
-			<version>1.0.0</version>
+			<version>1.0.1</version>
 		</dependency>
 	</dependencies>
 

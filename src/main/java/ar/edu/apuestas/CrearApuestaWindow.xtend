@@ -44,9 +44,8 @@ class CrearApuestaWindow extends SimpleWindow<Apuesta> {
 		new Label(editorPanel).setText("Tipo de Apuesta")
 		new Selector(editorPanel) => [
 			allowNull = false
-			bindItems(new ObservableProperty(this, "tiposPosibles"))
+			bindItemsToProperty("tiposPosibles")
 			bindValueToProperty("tipo")
-//			bindValue(new ObservableProperty(this.modelObject, "tipo"))
 		]
 
 		new Label(editorPanel).setText("¿A qué querés apostar?")
@@ -80,9 +79,6 @@ class CrearApuestaWindow extends SimpleWindow<Apuesta> {
 		showInfo(modelObject.resultado.toString)
 	}
 
-	def getTiposPosibles() {
-		#[new ApuestaPleno, new ApuestaDocena]
-	}
 }
 
 class DateBox extends TextBox {
