@@ -1,10 +1,10 @@
 package ar.edu.apuestas
 
 import java.math.BigDecimal
-import org.uqbar.arena.bindings.Transformer
+import org.uqbar.arena.bindings.ValueTransformer
 import org.uqbar.commons.model.UserException
 
-class BigDecimalTransformer implements Transformer<BigDecimal, String> {
+class BigDecimalTransformer implements ValueTransformer<BigDecimal, String> {
 
 	override getModelType() {
 		BigDecimal

@@ -1,7 +1,6 @@
 package ar.edu.apuestas
 
-import org.uqbar.arena.bindings.DateAdapter
-import org.uqbar.arena.bindings.ObservableProperty
+import org.uqbar.arena.bindings.DateTransformer
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
@@ -10,6 +9,7 @@ import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
+import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 
 /**
  * 
@@ -26,34 +26,33 @@ class CrearApuestaWindow extends SimpleWindow<Apuesta> {
 		val editorPanel = new Panel(mainPanel)
 		editorPanel.layout = new ColumnLayout(2)
 		
-		new Label(editorPanel).setText("Fecha")
+		new Label(editorPanel).text = "Fecha"
 		
-		new TextBox(editorPanel) => [
+		new DateBox(editorPanel) => [
 			width = 110
-			withFilter(new DateTextFilter)
-			bindValueToProperty("fecha").transformer = new DateAdapter
+			(value <=> "fecha").transformer = new DateTransformer
 		]
 		
 		new Label(editorPanel).setText("Monto")
 		
 		new TextBox(editorPanel) => [
-			val bindingMonto = bindValueToProperty("monto")
+			val bindingMonto = value <=> "monto"
 			bindingMonto.transformer = new BigDecimalTransformer			
 		]
 
-		new Label(editorPanel).setText("Tipo de Apuesta")
+		new Label(editorPanel).text = "Tipo de Apuesta"
 		new Selector(editorPanel) => [
 			allowNull = false
-			bindItemsToProperty("tiposPosibles")
-			bindValueToProperty("tipo")
+			items <=> "tiposPosibles"
+			value <=> "tipo"
 		]
 
-		new Label(editorPanel).setText("¿A qué querés apostar?")
+		new Label(editorPanel).text = "¿A qué querés apostar?"
 		new Selector(editorPanel) => [
 			allowNull = false
 			width = 100
-			bindItemsToProperty("tipo.valoresPosibles")
-			bindValueToProperty("valorApostado")			
+			items <=> "tipo.valoresPosibles"
+			value <=> "valorApostado"			
 		]
 	}
 
@@ -66,11 +65,15 @@ class CrearApuestaWindow extends SimpleWindow<Apuesta> {
 			// bindEnabled(new NotNullObservable("valorApostado"))
 			bindEnabledToProperty("puedeJugar")
 			disableOnError
+			// Ojo, al hacer esto estamos saliendo del binding
+			// 1 a 1 entre modelo y vista. El disableOnError
+			// pisa la definición anterior del binding entre la propiedad
+			// enabled del botón y la propiedad puedeJugar del modelo
 		]
 
 		new Label(actionsPanel) => [
 			width = 150
-			bindValueToProperty("resultado")
+			value <=> "resultado"
 		]
 	}
 

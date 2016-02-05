@@ -1,7 +1,7 @@
 package ar.edu.apuestas
 
 import java.util.ArrayList
-import org.uqbar.arena.widgets.TextFilter
+import org.uqbar.arena.filters.TextFilter
 import org.uqbar.arena.widgets.TextInputEvent
 
 class DateTextFilter implements TextFilter {
