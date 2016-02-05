@@ -10,6 +10,7 @@ import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.widgets.NumericField
 
 /**
  * 
@@ -35,7 +36,7 @@ class CrearApuestaWindow extends SimpleWindow<Apuesta> {
 		
 		new Label(editorPanel).setText("Monto")
 		
-		new TextBox(editorPanel) => [
+		new NumericField(editorPanel) => [
 			val bindingMonto = value <=> "monto"
 			bindingMonto.transformer = new BigDecimalTransformer			
 		]
