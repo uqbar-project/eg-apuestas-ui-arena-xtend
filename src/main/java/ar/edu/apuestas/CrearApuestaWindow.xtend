@@ -37,8 +37,7 @@ class CrearApuestaWindow extends SimpleWindow<Apuesta> {
 		new Label(editorPanel).setText("Monto")
 		
 		new NumericField(editorPanel) => [
-			val bindingMonto = value <=> "monto"
-			bindingMonto.transformer = new BigDecimalTransformer			
+			value <=> "monto"
 		]
 
 		new Label(editorPanel).text = "Tipo de Apuesta"
