@@ -27,7 +27,7 @@ class CrearApuestaWindow extends SimpleWindow<Apuesta> {
 		val editorPanel = new Panel(mainPanel)
 		editorPanel.layout = new ColumnLayout(2)
 		
-		new Label(editorPanel).text = "Fecha"
+		new Label(editorPanel).text = "Fecha (posterior a la de hoy)"
 		
 		new DateBox(editorPanel) => [
 			width = 110
