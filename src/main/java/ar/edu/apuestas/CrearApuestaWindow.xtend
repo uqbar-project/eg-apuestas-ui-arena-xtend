@@ -34,7 +34,7 @@ class CrearApuestaWindow extends SimpleWindow<Apuesta> {
 			(value <=> "fecha").transformer = new DateTransformer
 		]
 		
-		new Label(editorPanel).setText("Monto")
+		new Label(editorPanel).text = "Monto"
 		
 		new NumericField(editorPanel) => [
 			value <=> "monto"
