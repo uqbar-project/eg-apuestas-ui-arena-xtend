@@ -27,6 +27,8 @@ Una vez apostado, el jugador espera el resultado de la apuesta:
 
 # La aplicación
 
+![image](https://cloud.githubusercontent.com/assets/4549002/17304378/bd559b52-57fb-11e6-8fc2-4515548ca6a7.png)
+
 * Tiene una vista con un combo anidado entre el tipo de apuesta y el valor apostado. 
 * El modelo es un objeto Apuesta con un strategy por el tipo de apuesta. 
 * Cada estrategia de apuesta construye un resultado por ganador/perdedor que se bindea contra un label que muestra cómo le fue al usuario
