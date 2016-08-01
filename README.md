@@ -27,5 +27,11 @@ Una vez apostado, el jugador espera el resultado de la apuesta:
 
 # La aplicación
 
-Tiene una vista con un combo anidado entre el tipo de apuesta y el valor apostado. 
-El modelo es un objeto Apuesta con un strategy por el tipo de apuesta.
+* Tiene una vista con un combo anidado entre el tipo de apuesta y el valor apostado. 
+* El modelo es un objeto Apuesta con un strategy por el tipo de apuesta. 
+* Cada estrategia de apuesta construye un resultado por ganador/perdedor que se bindea contra un label que muestra cómo le fue al usuario
+* Hay diferentes momentos para validar cosas
+ * el botón apostar se habilita cuando se supera el monto mínimo de la apuesta, hay un valor apostado y la fecha para apostar es posterior a la fecha del día
+ * si ingresás una fecha inválida, te avisa en el panel de errores (arriba del formulario)
+ * pero además, hay un DateTextFilter que impide al usuario ingresar valores incorrectos al cargar la fecha (ej: no se puede ingresar la barra / como primer caracter, solo en la tercera o sexta posición)
+ 
