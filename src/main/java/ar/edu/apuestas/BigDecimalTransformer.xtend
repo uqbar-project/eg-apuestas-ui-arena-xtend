@@ -2,7 +2,7 @@ package ar.edu.apuestas
 
 import java.math.BigDecimal
 import org.uqbar.arena.bindings.ValueTransformer
-import org.uqbar.commons.model.UserException
+import org.uqbar.commons.model.exceptions.UserException
 
 class BigDecimalTransformer implements ValueTransformer<BigDecimal, String> {
 

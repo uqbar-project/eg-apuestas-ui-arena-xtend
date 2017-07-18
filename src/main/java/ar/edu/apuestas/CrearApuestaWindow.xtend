@@ -4,13 +4,14 @@ import org.uqbar.arena.bindings.DateTransformer
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.NumericField
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.Selector
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
+
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import org.uqbar.arena.widgets.NumericField
 
 /**
  * 
@@ -64,7 +65,7 @@ class CrearApuestaWindow extends SimpleWindow<Apuesta> {
 	
 			// bindEnabled(new NotNullObservable("valorApostado"))
 			bindEnabledToProperty("puedeJugar")
-			disableOnError
+			//disableOnError
 			// Ojo, al hacer esto estamos saliendo del binding
 			// 1 a 1 entre modelo y vista. El disableOnError
 			// pisa la definición anterior del binding entre la propiedad
