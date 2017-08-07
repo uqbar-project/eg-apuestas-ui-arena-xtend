@@ -1,5 +1,7 @@
 # Apuestas
 
+[![Build Status](https://travis-ci.org/uqbar-project/eg-apuestas-ui-arena-xtend.svg?branch=master)](https://travis-ci.org/uqbar-project/eg-apuestas-ui-arena-xtend)
+
 ![ruleta](https://cloud.githubusercontent.com/assets/4549002/17299651/9dcb3e56-57e5-11e6-83d3-4a43e6cb4dc8.png)
 
 # Enunciado
