@@ -1,6 +1,7 @@
 package ar.edu.apuestas
 
 import org.uqbar.arena.bindings.DateTransformer
+import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
@@ -44,7 +45,7 @@ class CrearApuestaWindow extends SimpleWindow<Apuesta> {
 		new Label(editorPanel).text = "Tipo de Apuesta"
 		new Selector(editorPanel) => [
 			allowNull = false
-			items <=> "tiposPosibles"
+			(items <=> "tiposPosibles").adapter = new PropertyAdapter(TipoApuesta, "nombre")
 			value <=> "tipo"
 		]
 
