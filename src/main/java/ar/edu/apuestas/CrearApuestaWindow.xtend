@@ -45,7 +45,7 @@ class CrearApuestaWindow extends SimpleWindow<Apuesta> {
 		new Label(editorPanel).text = "Tipo de Apuesta"
 		new Selector(editorPanel) => [
 			allowNull = false
-			(items <=> "tiposPosibles").adapter = new PropertyAdapter(TipoApuesta, "nombre")
+			(items <=> "tiposPosibles")
 			value <=> "tipo"
 		]
 
