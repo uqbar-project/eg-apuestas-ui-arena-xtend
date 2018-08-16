@@ -285,7 +285,7 @@ def getTiposPosibles() {
 
 Otro ejemplo similar, si estoy seleccionando el color de un auto en una colección, es difícil que el auto me pueda decir todos los colores disponibles.
 
-**Pequeña disgresión: ** en UI me conviene que los ítems sean una lista, para que esté ordenada y sea cómodo de seleccionar para el usuario (si no aparecen cada vez en distinto orden y eso puede ser problemático).
+**Pequeña disgresión:** en UI me conviene que los ítems sean una lista, para que esté ordenada y sea cómodo de seleccionar para el usuario (si no aparecen cada vez en distinto orden y eso puede ser problemático).
 
 ## Binding contra otros modelos
 
