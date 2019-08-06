@@ -1,7 +1,6 @@
 package ar.edu.apuestas
 
 import org.uqbar.arena.bindings.DateTransformer
-import org.uqbar.arena.bindings.PropertyAdapter
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.widgets.Label
@@ -98,4 +97,3 @@ class DateBox extends TextBox {
 	}
 	
 }
-
